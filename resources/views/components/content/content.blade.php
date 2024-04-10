@@ -62,16 +62,16 @@
 
      <div class="col-md-6 my-5">
        <div class="thumb d-flex justify-content-center " >
-         <a href="home.html#content">
+         <a href="#content">
            <img id="bottom" src="{{ asset('assets/img/thumb1.png') }}" onmouseover="imgSlider('{{ asset('assets/img/img1.png') }}');" />
          </a>
-         <a href="home.html#content">
+         <a href="#content">
            <img src="{{ asset('assets/img/thumb2.png') }}" onmouseover="imgSlider('{{ asset('assets/img/img2.png') }}');" />
          </a>
-         <a href="home.html#content">
+         <a href="#content">
            <img src="{{ asset('assets/img/thumb3.png') }}" onmouseover="imgSlider('{{ asset('assets/img/img3.png') }}');" />
          </a>
-         <a href="home.html#content">
+         <a href="#content">
            <img src="{{ asset('assets/img/thumb4.png') }}" onmouseover="imgSlider('{{ asset('assets/img/img4.png') }}');" />
          </a>
 
@@ -105,9 +105,7 @@
        lattes to seasonal favorites, there's something for every palate. Join
        us at Starbucks and let's make every sip count.
      </p>
-     <!-- <a class="nav-link" data-bs-toggle="modal" data-bs-target="#addProduct">
-     <button class="btn btn-outline-success" >Add Product</button>
-     </a> -->
+
    </div>
  </section>
  <!-- End Hero-->
@@ -127,5 +125,5 @@
    </div>
  </section>
 <script>
-    
+
 </script>

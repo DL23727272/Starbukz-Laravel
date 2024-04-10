@@ -20,6 +20,20 @@
     <link rel="icon" type="image/x-icon" href="/img/logo.ico">
 
     <style>
+        .thumb {
+            display: flex;
+            margin-top: -60px;
+            justify-content: center;
+        }
+        .thumb a:hover {
+            margin-top: -15px;
+            transition: 0.2s;
+        }
+        .thumb img {
+            width: 54px;
+            margin: 20px 20px 0 10px;
+            max-height: 100%;
+        }
           .navbar {
             background-color: #006341;
             transition: background-color 0.3s ease;
@@ -81,43 +95,41 @@
     </style>
 </head>
 <body>
-     <!--Navbar-->
-     <nav class="navbar navbar-expand-lg shadow-lg sticky-top" id="navbar">
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg shadow-lg sticky-top" id="navbar">
         <div class="container-sm d-flex justify-content-between" style="width: 100%">
 
-          <div class="d-flex justify-content-between align-items-center" style="width: 100vw">
+            <div class="d-flex justify-content-between align-items-center" style="width: 100vw">
             <div>
-              <img src="{{ asset('assets/img/logo.png') }}" alt="" style="width: 100px" />
+                <a href="#"> <img src="{{ asset('assets/img/logo.png') }}" alt="" style="width: 100px" /></a>
             </div>
             <div>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
                 <i class="fa-solid fa-mug-hot" id="mugIcon"></i>
-              </button>
+                </button>
             </div>
-          </div>
+            </div>
 
-          <div class="collapse navbar-collapse container-fluid" id="navbarSupportedContent" style="width: 30vw">
-            <ul class="navbar-nav mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="/">
-                  Home
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link  " href="#products">
-                  Products
-                </a>
-              </li>
-            </ul>
-          </div>
+            <div class="collapse navbar-collapse container-fluid" id="navbarSupportedContent" style="width: 30vw">
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="#">
+                        Home
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link  " href="#products">
+                        Products
+                    </a>
+                    </li>
+                </ul>
+            </div>
 
         </div>
-      </nav>
+    </nav>
       <!--End ti Navbar -->
 
       <img src="{{ asset('assets/img/banner.jpg') }}" alt="image" class="login__bg">
-
-
 
       <!-- LOGIN FORM -->
       <section class="vh-100">
@@ -179,7 +191,56 @@
 
       <!-- END MODAL -->
 
-      <hr class="container-sm Sborder border-success mt-5 border-2 opacity-50" />
+
+        <!---Carousel-->
+
+        <div class="container-sm mt-5 my-5 text-center">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-sm-12 col-md-4 mx-auto">
+                    <img src="{{ asset('assets/img/img1.png') }}" alt="" class="starbucks img-fluid" style="width: 300px; height: 400px; filter: drop-shadow(11px 13px 9px #000000);
+                -webkit-filter: drop-shadow(11px 13px 9px #000000); -moz-filter: drop-shadow(11px 13px 9px #000000);" />
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="container mt-5">
+            <div class="row">
+
+                <div class="col-md-3">
+                </div>
+
+                <div class="col-md-6 my-5">
+                <div class="thumb d-flex justify-content-center " >
+                    <a href="#products">
+                    <img id="bottom" src="{{ asset('assets/img/thumb1.png') }}" onmouseover="imgSlider('{{ asset('assets/img/img1.png') }}');" />
+                    </a>
+                    <a href="#products">
+                    <img src="{{ asset('assets/img/thumb2.png') }}" onmouseover="imgSlider('{{ asset('assets/img/img2.png') }}');" />
+                    </a>
+                    <a href="#products">
+                    <img src="{{ asset('assets/img/thumb3.png') }}" onmouseover="imgSlider('{{ asset('assets/img/img3.png') }}');" />
+                    </a>
+                    <a href="#products">
+                    <img src="{{ asset('assets/img/thumb4.png') }}" onmouseover="imgSlider('{{ asset('assets/img/img4.png') }}');" />
+                    </a>
+
+                </div>
+                </div>
+
+                <div class="col-md-2">
+                </div>
+
+            </div>
+        </div>
+        <!--End Carousel-->
+
+
+        <hr class="container-sm Sborder border-success mt-5 border-2 opacity-50" />
+
 
       <!--Hero-->
       <section class="container-sm">
@@ -199,9 +260,7 @@
             lattes to seasonal favorites, there's something for every palate. Join
             us at Starbucks and let's make every sip count.
           </p>
-          <!-- <a class="nav-link" data-bs-toggle="modal" data-bs-target="#addProduct">
-          <button class="btn btn-outline-success" >Add Product</button>
-          </a> -->
+
         </div>
       </section>
       <!-- End Hero-->
@@ -218,7 +277,7 @@
           </div>
 
           <div class=" w-100" id="products"></div>
-
+             {!! $output !!}
           </div>
         </div>
       </section>
