@@ -22,7 +22,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link  " href="#content">
+            <a class="nav-link  " href="/home#content">
               Product
             </a>
           </li>
