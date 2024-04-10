@@ -12,8 +12,12 @@ Route::get('/home', function () {
     return view('home');
 });
 
+Route::get('/cart', function(){
+    return view('cart');
+});
+
 //Fetch Products
-Route::get('/', [ProductController::class, 'product']);
+Route::get('/home', [ProductController::class, 'product']);
 
 //Modal
 Route::get('/modal', [ModalController::class, 'modals'])->name('modal');

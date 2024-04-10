@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse container-fluid" id="navbarSupportedContent" style="width: 30vw">
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link " aria-current="page" href="#">
+            <a class="nav-link " aria-current="page" href="/home">
               Home
             </a>
           </li>
@@ -27,7 +27,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="cart.html">
+            <a class="nav-link " href="/cart">
               Cart(<span id="cartCount">0</span>)
             </a>
           </li>

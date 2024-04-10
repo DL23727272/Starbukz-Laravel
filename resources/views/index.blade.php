@@ -99,7 +99,7 @@
           <div class="collapse navbar-collapse container-fluid" id="navbarSupportedContent" style="width: 30vw">
             <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link " aria-current="page" href="#">
+                <a class="nav-link " aria-current="page" href="/">
                   Home
                 </a>
               </li>
@@ -218,7 +218,7 @@
           </div>
 
           <div class=" w-100" id="products"></div>
-          <!-- THE PRODUCTS WILL SHOW HERE -->
+
           </div>
         </div>
       </section>
@@ -377,26 +377,8 @@
             });
         }
       }
+     
 
-       //FOR NOW LOAD PRODUCTS USING ADMINLOADPRODUCTS.PHP
-
-       adminLoadProducts();
-
-      function adminLoadProducts() {
-        $.ajax({
-            url: 'adminFetchProduct.php',
-            success: function (data) {
-                if (data.trim() === '') {
-                    $('#products').append('<div><p>NO PRODUCTS AVAILABLE</p></div>');
-                } else {
-                    $('#products').append(data);
-                }
-            },
-            error: function () {
-                $('#products').append('<div><p>Error loading products. Please try again later.</p></div>');
-            }
-        });
-      }
     </script>
 </body>
 </html>
