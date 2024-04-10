@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>Login</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -18,7 +20,6 @@
 
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="icon" type="image/x-icon" href="/img/logo.ico">
-
     <style>
         .thumb {
             display: flex;
@@ -145,7 +146,8 @@
 
             <div class="col ">
                 <div class="login_card card mt-4">
-                  <form enctype="multipart/form-data" method="POST" class="mt-1">
+                  <form action="{{ route('login.submit') }}" enctype="multipart/form-data" method="POST" class="mt-1">
+                    @csrf
                     <div class="m-5">
                         <div class="form-group my-4">
                           <img src="{{ asset('assets/img/hero.png') }}" alt="" style="width: 300px; ">
@@ -172,7 +174,7 @@
 
                         <div class="form-group row justify-content-end">
                             <div class="col-auto">
-                                <button type="button" id="addProductButton" class="btn btn-outline-light" onclick="Login()">Login</button>
+                                <button type="submit" id="addProductButton" class="btn btn-outline-light">Login</button>
                             </div>
                         </div>
                     </div>
@@ -308,136 +310,39 @@
       </footer>
      <!---End Footer-->
 
-     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
      <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
      <script type="text/javascript">
-      alertify.set('notifier', 'position', 'top-right');
+         alertify.set('notifier', 'position', 'top-right');
 
-      $(document).ready(function () {
-        $('#modalContainer').load('{{ route("modal") }}');
-      });
+         $(document).ready(function () {
+             // Load modal content
+             $('#modalContainer').load('{{ route("modal") }}');
+         });
 
-      //For navbar
-      window.onscroll = function () { scrollFunction() };
+         //For navbar
+         window.onscroll = function () { scrollFunction() };
 
-      function scrollFunction() {
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-          document.getElementById("navbar").classList.add("blurred");
-          const navLinks = document.querySelectorAll(".nav-link");
-          navLinks.forEach(link => link.classList.add("scrolled"));
-          document.getElementById("mugIcon").classList.add("scrolled"); // Add scrolled class to the icon
-        } else {
-          document.getElementById("navbar").classList.remove("blurred");
-          const navLinks = document.querySelectorAll(".nav-link");
-          navLinks.forEach(link => link.classList.remove("scrolled"));
-          document.getElementById("mugIcon").classList.remove("scrolled"); // Remove scrolled class from the icon
-        }
-      }
-      //end of function for navbarrr
-
-      //form validation
-      function Login() {
-          var username = document.getElementById("customerName").value;
-          var password = document.getElementById("customerPassword").value;
-
-          if (username == "" && password == "") {
-              alertify.error('Empty fields! Please fill all the fields.');
-          } else if (username == "") {
-              alertify.error('Fill up the Username field!');
-          } else if (password == "") {
-              alertify.error('Fill up the Password field!');
-          } else {
-              // Send form data to loginProcess.php using AJAX
-              $.ajax({
-                  type: "POST",
-                  url: "loginProcess.php",
-                  data: {
-                      customerLoginName: username,
-                      customerLoginPassword: password
-                  },
-                  dataType: "json",
-                  success: function(response) {
-                      // Handle success response
-                      if (response.status === 'success') {
-
-                          // if login goods
-                          alertify.success(response.message + ' <i class="fa fa-spinner fa-spin"></i>');
-
-                          var customerID = response.customerID;
-                          sessionStorage.setItem('customerID', customerID);
-
-                          var customerNameInput = document.getElementById("customerName").value;
-                          var customerName = customerNameInput;
-                          sessionStorage.setItem('customerName', customerName); //tangina  40mins para dito
-
-                          setTimeout(function() {
-
-                              // condition for the type if admin or user
-
-                              if (response.userType === 'admin') {
-                                  window.location.href = 'admin.html';
-                              } else {
-                                  window.location.href = 'home.html';
-                              }
-
-                          }, 2000);
-
-                      } else {
-                          alertify.error(response.message);// Display error message
-                      }
-                  },
-                  error: function(xhr, status, error) {
-                      console.error(xhr.responseText);
-                      alertify.error('Failed to log in!');
-                      // Display error message
-                  }
-              });
-          }
-      }
+         function scrollFunction() {
+             if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                 $('#navbar').addClass('blurred');
+                 $('.nav-link').addClass('scrolled');
+                 $('#mugIcon').addClass('scrolled');
+             } else {
+                 $('#navbar').removeClass('blurred');
+                 $('.nav-link').removeClass('scrolled');
+                 $('#mugIcon').removeClass('scrolled');
+             }
+         }
+         //end of function for navbar
 
 
-      function Signup() {
-        // Get form data
-        var customerSignUpEmail = $("#customerSignUpEmail").val();
-        var customerSignUpName = $("#customerSignUpName").val();
-        var customerSignUpPassword = $("#customerSignUpPassword").val();
-        var customerPhoneNumber = $("#customerPhoneNumber").val();
-        var customerAddress = $("#customerAddress").val();
-
-        if (customerSignUpName === "" || customerSignUpPassword === "" || customerSignUpEmail === "" || customerPhoneNumber === "" || customerAddress === "") {
-            alertify.error('Empty fields! Please fill all the fields.');
-        } else {
-            $.ajax({
-                type: "POST",
-                url: "signupProcess.php",
-                data: {
-                    customerSignUpEmail: customerSignUpEmail,
-                    customerSignUpName: customerSignUpName,
-                    customerSignUpPassword: customerSignUpPassword,
-                    customerPhoneNumber: customerPhoneNumber,
-                    customerAddress: customerAddress
-                },
-                dataType: "json",
-                success: function(response) {
-                    if (response.status === 'success') {
-                        alertify.success(response.message);
-                        $('#exampleModal').modal('hide');
-                    } else {
-                        alertify.error(response.message);
-                    }
-                },
-                error: function(xhr, status, error) {
-                    // Handle error response
-                    console.error(xhr.responseText);
-                    alertify.error('Failed to sign up!');
-                    // Display error message to the user
-                }
-            });
-        }
-      }
 
 
-    </script>
+
+     </script>
 </body>
 </html>

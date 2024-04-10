@@ -103,6 +103,7 @@
                 </div>
                 <div class="modal-body">
                     <form enctype="multipart/form-data" method="POST" class="mt-1" id="signupForm">
+                        @csrf
                         <div class="m-5">
                             <div class="form-group my-4">
                                 <label for="email" style="font-weight: 700;"><i class="fa-solid fa-envelope"></i> Email</label>
