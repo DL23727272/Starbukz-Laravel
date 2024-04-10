@@ -256,7 +256,7 @@
       alertify.set('notifier', 'position', 'top-right');
 
       $(document).ready(function () {
-        $('#modalContainer').load('modal.html');
+        $('#modalContainer').load('{{ route("modal") }}');
       });
 
       //For navbar
@@ -377,7 +377,7 @@
             });
         }
       }
-     
+
 
     </script>
 </body>

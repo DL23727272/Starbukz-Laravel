@@ -6,7 +6,7 @@
         <div class="modal-content "  style="background: rgba(255, 255, 255, 0.449);  backdrop-filter: blur(10px); ">
             <div class="modal-header custom-modal ">
                 <div class="col-sm">
-                <img src="img/hero.png" alt="" style="width: 200px; ">
+                <img src="{{ asset('assets/img/hero.png') }} alt="" style="width: 200px; ">
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
@@ -98,7 +98,7 @@
         <div class="modal-dialog">
             <div class="modal-content" style="background: rgba(255, 255, 255, 0.449);  backdrop-filter: blur(10px); ">
                 <div class="modal-header">
-                    <img src="img/hero.png" alt="" style="width: 200px; ">
+                    <img src="{{ asset('assets/img/hero.png') }}" alt="" style="width: 200px; ">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
