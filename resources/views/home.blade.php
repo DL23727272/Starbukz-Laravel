@@ -93,7 +93,7 @@
 <body>
 
     @include('components.navigation.navbar')
-    @include('components.content.content')
+    @include('components.content.homeContent')
     @include( 'components.footer.footer' )
 
 
