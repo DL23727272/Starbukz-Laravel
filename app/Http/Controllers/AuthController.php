@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
@@ -25,6 +23,7 @@ class AuthController extends Controller
         return redirect()->back()->withInput()->withErrors(['error' => 'Invalid credentials']);
     }
 
+    // Other methods
 
 
     protected function authenticate($username, $password) {
