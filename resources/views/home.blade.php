@@ -258,8 +258,10 @@ window.onload = function (){
     });
 }
 
-
-
+// retrieve the customer ID and set it in session storage
+    var customerID = "{{ $customerID ?? '' }}";
+    console.log('Customer ID: ' + customerID);
+    sessionStorage.setItem('customerID', customerID);
 
 
 </script>

@@ -8,22 +8,30 @@ use Illuminate\Support\Facades\Redirect;
 
 class AuthController extends Controller
 {
-    public function customerLogin(Request $request)
-    {
-        $request->validate([
-            'customerName' => 'required|string',
-            'customerPassword' => 'required|string',
-        ]);
 
-        if ($this->authenticate($request->input('customerName'), $request->input('customerPassword'))) {
-            return Redirect::to('/home');
+        public function customerLogin(Request $request)
+        {
+            $request->validate([
+                'customerName' => 'required|string',
+                'customerPassword' => 'required|string',
+            ]);
+
+            if ($this->authenticate($request->input('customerName'), $request->input('customerPassword'))) {
+                $customerID = $this->getCustomerID($request->input('customerName'));
+
+                // Pass the customer ID to the HomeController
+                return (new HomeController())->home($customerID);
+            }
+
+            return redirect()->back()->withInput()->withErrors(['error' => 'Invalid credentials']);
         }
 
-        return redirect()->back()->withInput()->withErrors(['error' => 'Invalid credentials']);
-    }
+        // Other methods
 
-    // Other methods
-
+        protected function getCustomerID($customerName) {
+            $user = DB::table('customer_table')->where('customerName', $customerName)->first();
+            return $user ? $user->customerID : null;
+        }
 
     protected function authenticate($username, $password) {
 
