@@ -73,7 +73,7 @@ class ProductController extends Controller
             }
         }
 
-       
+
         $output .= '</div>';
 
         // condition para sa view pag hindi index mag papakita yung may button if wala yung else condition naman
@@ -82,6 +82,12 @@ class ProductController extends Controller
         } else {
             return view('index', compact('output'));
         }
+
+        // if ($view == 'index') {
+        //     return view('index', compact('output'));
+        // } else
+        //     return $output;
+        // }
     }
 
 }
