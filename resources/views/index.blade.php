@@ -343,7 +343,10 @@
         function customerLogin() {
             var username = document.getElementById("customerName").value;
             var password = document.getElementById("customerPassword").value;
+            localStorage.setItem('customerName', username);
+            console.log('Username: ' + username);
             sessionStorage.setItem('customerName', username);
+
             if (username == "" && password == "") {
                 alertify.error('Empty fields! Please fill all the fields.');
             } else if ( username == ""){
@@ -360,7 +363,6 @@
                     },
                     dataType: "json",
                     success: function(response) {
-                        console.log(response);
                         if (response.status === 'success') {
                             alertify.success(response.message + ' <i class="fa fa-spinner fa-spin"></i>');
 
@@ -368,6 +370,7 @@
                             sessionStorage.setItem('customerID', response.customerID);
                             sessionStorage.setItem('userType', response.userType);
                             localStorage.setItem('customerName', username);
+                            sessionStorage.setItem('customerName', username);
 
                             setTimeout(function() {
                                 if (response.userType === 'user') {

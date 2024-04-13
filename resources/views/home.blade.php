@@ -258,10 +258,18 @@ window.onload = function (){
     });
 }
 
-// retrieve the customer ID and set it in session storage
+document.addEventListener("DOMContentLoaded", function() {
+    // Retrieve the customer ID passed from the controller
     var customerID = "{{ $customerID ?? '' }}";
-    console.log('Customer ID: ' + customerID);
+
+    // Set the customer ID in session storage
     sessionStorage.setItem('customerID', customerID);
+    localStorage.setItem('customerID', customerID);
+
+    // Print the customer ID to the console
+    console.log('Customer ID: ' + customerID);
+});
+
 
 
 </script>
