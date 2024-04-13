@@ -16,7 +16,6 @@ class AuthController extends Controller
         ]);
 
         if ($this->authenticate($request->input('customerName'), $request->input('customerPassword'))) {
-            // Authentication successful, redirect to /home route
             return Redirect::to('/home');
         }
 

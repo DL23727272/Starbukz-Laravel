@@ -174,7 +174,7 @@
 
                         <div class="form-group row justify-content-end">
                             <div class="col-auto">
-                                <button type="submit" id="addProductButton" class="btn btn-outline-light">Login</button>
+                                <button type="submit" id="addProductButton" class="btn btn-outline-light" onclick="customerLogin()">Login</button>
                             </div>
                         </div>
                     </div>
@@ -339,7 +339,50 @@
          }
          //end of function for navbar
 
+       //function for login
+        function customerLogin() {
+            var username = document.getElementById("customerName").value;
+            var password = document.getElementById("customerPassword").value;
+            sessionStorage.setItem('customerName', username);
+            if (username == "" && password == "") {
+                alertify.error('Empty fields! Please fill all the fields.');
+            } else if ( username == ""){
+                alertify.error("Empty  Username!");
+            } else if(password == ""){
+                alertify.error("Empty Password!");
+            }else {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('login.submit') }}",
+                    data: {
+                        customerName: username,
+                        customerPassword: password
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        console.log(response);
+                        if (response.status === 'success') {
+                            alertify.success(response.message + ' <i class="fa fa-spinner fa-spin"></i>');
 
+                            // di nagana
+                            sessionStorage.setItem('customerID', response.customerID);
+                            sessionStorage.setItem('userType', response.userType);
+                            localStorage.setItem('customerName', username);
+
+                            setTimeout(function() {
+                                if (response.userType === 'user') {
+                                    window.location.href = '/home';
+                                } else {
+                                    window.location.href = '/admin';
+                                }
+                            }, 2000);
+                        } else {
+                            alertify.error(response.message);
+                        }
+                    },
+                });
+            }
+        }
 
 
 
