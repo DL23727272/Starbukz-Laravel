@@ -260,7 +260,7 @@ window.onload = function (){
 
 document.addEventListener("DOMContentLoaded", function() {
     // Retrieve the customer ID passed from the controller
-    var customerID = "{{ $customerID ?? '' }}";
+    var customerID = "{{ session()->get('customerID') ?? '' }}";
 
     // Set the customer ID in session storage
     sessionStorage.setItem('customerID', customerID);
