@@ -1,10 +1,15 @@
 <?php
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ModalController;
 use App\Http\Controllers\HomeController;
+
+
+
+
 Route::get('/', function () {
     return view('index');
 });
@@ -28,3 +33,7 @@ Route::get('/modal', [ModalController::class, 'modals'])->name('modal');
 Route::post('/', [AuthController::class, 'customerLogin'])->name('login.submit');
 
 
+
+// Route to handle placing an order
+Route::post('/place-order', [OrderController::class, 'placeOrder'])->name('place.order');
+Route::get('/customerOrders', 'OrderController@customerOrders');

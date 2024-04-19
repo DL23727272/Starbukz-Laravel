@@ -20,6 +20,9 @@
 
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <link rel="icon" type="image/x-icon" href="/img/logo.ico">
+
+     <!-- Sweet -->
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <style>
         .thumb {
             display: flex;
@@ -354,36 +357,12 @@
             } else if(password == ""){
                 alertify.error("Empty Password!");
             }else {
-                $.ajax({
-                    type: "POST",
-                    url: "{{ route('login.submit') }}",
-                    data: {
-                        customerName: username,
-                        customerPassword: password
-                    },
-                    dataType: "json",
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            alertify.success(response.message + ' <i class="fa fa-spinner fa-spin"></i>');
-
-                            // di nagana
-                            sessionStorage.setItem('customerID', response.customerID);
-                            sessionStorage.setItem('userType', response.userType);
-                            localStorage.setItem('customerName', username);
-                            sessionStorage.setItem('customerName', username);
-
-                            setTimeout(function() {
-                                if (response.userType === 'user') {
-                                    window.location.href = '/home';
-                                } else {
-                                    window.location.href = '/admin';
-                                }
-                            }, 2000);
-                        } else {
-                            alertify.error(response.message);
-                        }
-                    },
-                });
+                Swal.fire({
+                        icon: 'success',
+                        title: 'Welcome!',
+                        showConfirmButton: false,
+                        timer: 2000
+                      });
             }
         }
 

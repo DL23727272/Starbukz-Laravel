@@ -2,11 +2,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 class Customer extends Model
 {
-    protected $table = 'customer_table';
+    protected $fillable = [
+        'name', 'password', 'email', 'type', 'phone_number', 'address', // Add other fillable fields as needed
+    ];
 
-    protected $fillable = ['customerName', 'customerPassword'];
+    // Define relationship with orders
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
